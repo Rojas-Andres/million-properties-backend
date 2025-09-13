@@ -1,0 +1,39 @@
+# Build artifacts
+bin/
+obj/
+publish/
+*.dll
+*.exe
+*.pdb
+
+# Development files
+.vs/
+.vscode/
+*.user
+*.suo
+*.sdf
+
+# Runtime files
+*.log
+logs/
+
+# Package files
+*.nupkg
+*.snupkg
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Documentation
+README.md
+*.md
