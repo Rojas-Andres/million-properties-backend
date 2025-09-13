@@ -9,6 +9,30 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - pip install boto3==1.35.22
+      - export NAME_SERVICE=$NAME_SERVICE_CODEBUILD
+      - export ENVIRONMENT_LOWER=$(echo $ENVIRONMENT | tr '[:upper:]' '[:lower:]')
+      - export BUCKET_NAME=$NAME_SERVICE-$ENVIRONMENT_LOWER
+      - export IMAGE_REPO_NAME=$NAME_SERVICE-$ENVIRONMENT_LOWER-ecr
+      - |
+        aws ecr describe-repositories --repository-names $IMAGE_REPO_NAME --region $AWS_DEFAULT_REGION
+        if [ $? -ne 0 ]; then
+          echo "ECR repository does not exist. Creating..."
+          aws ecr create-repository --repository-name $IMAGE_REPO_NAME --region $AWS_DEFAULT_REGION
+          echo "ECR repository created successfully."
+        else
+          echo "ECR repository already exists."
+        fi
+      
+      - echo "Checking if the S3 bucket exists"
+      - |
+        aws s3api head-bucket --bucket $BUCKET_NAME --region $AWS_DEFAULT_REGION
+        if [ $? -ne 0 ]; then
+          echo "S3 bucket does not exist. Creating..."
+          aws s3api create-bucket --bucket $BUCKET_NAME --region $AWS_DEFAULT_REGION
+          echo "S3 bucket created successfully."
+        else
+          echo "S3 bucket already exists."
+        fi
   build:
     commands:
       # Build Docker images

@@ -24,7 +24,7 @@ Parameters:
     Default: PrivateSubnetTwo
   EcrRepository:
     Description: Description
-    Type: String
+    Type: AWS::SSM::Parameter::Value<String>
     Default: EcrRepository
   Port:
     Type: Number
