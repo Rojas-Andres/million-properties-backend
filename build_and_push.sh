@@ -16,12 +16,12 @@ AWS_DEFAULT_REGION=$4
 IMAGE_REPO_NAME=$5
 
 # Construir la imagen de Docker sin caché
-echo "Construyendo la imagen de Docker django service ..."
+echo "Construyendo la imagen de Docker service ..."
 
-docker build --no-cache -t ${NAME_SERVICE}-django:${CODEBUILD_RESOLVED_SOURCE_VERSION}-django .
+docker build --no-cache -t ${NAME_SERVICE}:${CODEBUILD_RESOLVED_SOURCE_VERSION} .
 
-docker tag ${NAME_SERVICE}-django:${CODEBUILD_RESOLVED_SOURCE_VERSION}-django $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_RESOLVED_SOURCE_VERSION}-django
+docker tag ${NAME_SERVICE}:${CODEBUILD_RESOLVED_SOURCE_VERSION} $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_RESOLVED_SOURCE_VERSION}
 
-docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_RESOLVED_SOURCE_VERSION}-django
+docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_RESOLVED_SOURCE_VERSION}
 
 echo "Imagen de Docker construida y subida a ECR."

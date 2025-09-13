@@ -43,7 +43,7 @@ phases:
       - sam build -t template_app_runner.yml
       - aws cloudformation package --template-file .aws-sam/build/template.yaml --s3-bucket $BUCKET_NAME --output-template-file packaged-template.yml
       - aws s3 cp ./packaged-template.yml s3://$BUCKET_NAME/packaged-template.yml
-      - python param_update.py EcrRepository $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_RESOLVED_SOURCE_VERSION}-django ${AWS_DEFAULT_REGION}
+      - python param_update.py EcrRepository $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/${IMAGE_REPO_NAME}:${CODEBUILD_RESOLVED_SOURCE_VERSION} ${AWS_DEFAULT_REGION}
 
 artifacts:
   files:
