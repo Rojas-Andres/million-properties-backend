@@ -144,7 +144,6 @@ Resources:
     DependsOn:
       - ECRRepositoryAccessRole
       - InstanceRole
-      - BucketS3InputDataAssets
     Type: AWS::AppRunner::Service
     Properties:
       ServiceName: !Sub ${StackName}-api-${Environment}
