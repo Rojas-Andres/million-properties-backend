@@ -1,0 +1,11 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "million-backend"
+resolve_s3 = true
+s3_prefix = "million-backend"
+region = "us-east-1"
+profile = "jumpcube"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Environment=\"dev\" StackName=\"million-properties\" VPCId=\"vpc-0600df36a3f87f4a2\" PublicSubnetOne=\"subnet-03672ca1575cb2bf0\" PublicSubnetTwo=\"subnet-05c2c300dbb0d3805\" PrivateSubnetOne=\"subnet-0d32f35ecf5a4904a\" PrivateSubnetTwo=\"subnet-002c3218519258210\" ArnCertificateACM=\"arn:aws:acm:us-east-1:306228549549:certificate/871bd1ea-4b8a-41ec-a4fb-a71965992b17\" EcrRepository=\"\""
+image_repositories = []

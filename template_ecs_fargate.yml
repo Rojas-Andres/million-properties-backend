@@ -13,15 +13,15 @@ Parameters:
   VPCId:
     Description: Description
     Type: String
-    Default: VPCId
+    Default: vpc-0600df36a3f87f4a2
   PublicSubnetOne:
     Description: Description
     Type: String
-    Default: PublicSubnetOne
+    Default: subnet-05c2c300dbb0d3805
   PublicSubnetTwo:
     Description: PublicSubnetTwo
     Type: String
-    Default: PublicSubnetTwo
+    Default: subnet-03672ca1575cb2bf0
   PrivateSubnetOne:
     Description: Description
     Type: String
@@ -124,7 +124,6 @@ Resources:
       SecurityGroups:
         - !Ref SecurityGroup
       Scheme: internet-facing
-
 
   LoadBalancerListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
