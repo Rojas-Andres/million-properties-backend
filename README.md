@@ -498,5 +498,13 @@ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gp
 # Actualizar e instalar
 sudo apt update
 sudo apt install -y mongodb-org
-mongosh "mongodb+srv://cantilloderek_db_user:xan4Jh1JaeClIa6C@cluster0.utnsz9w.mon
-  godb.net/?retryWrites=true&w=majority&appName=Cluster0"
+mongosh "mongodb+srv://cantilloderek_db_user:xan4Jh1JaeClIa6C@cluster0.utnsz9w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+
+## Build and deploy vpc
+
+sam deploy --guided --profile jumpcube --template-file template_vpc.yml
+
+sam deploy --profile jumpcube
+
+sam build --use-container
